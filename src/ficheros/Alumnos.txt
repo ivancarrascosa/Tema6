@@ -1,0 +1,5 @@
+juan 22 1,77
+luis 21 1,80
+pedro 20 1,73
+Jose 23 1,67
+Hugo 18 1,81
