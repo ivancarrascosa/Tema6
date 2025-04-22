@@ -28,7 +28,7 @@ public class Ejercicio6 {
 			e.printStackTrace();
 		}
 		System.out.println(listaNumeros);
-		try(BufferedWriter escritura = new BufferedWriter(new FileWriter("src//numerosOrdenados.txt"))) {
+		try(BufferedWriter escritura = new BufferedWriter(new FileWriter("src//ficheros//numerosOrdenados.txt"))) {
 			for(int numeroLista : listaNumeros) {
 				escritura.write(String.valueOf(numeroLista));
 				escritura.newLine();
