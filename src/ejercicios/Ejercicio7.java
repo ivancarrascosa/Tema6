@@ -22,23 +22,7 @@ public class Ejercicio7 {
 		int telefono;
 		Scanner reader = new Scanner(System.in);
 		
-		String linea;
-		
-		String[] nombreTelefono = new String[2];
-		try(BufferedReader lectura = new BufferedReader(new FileReader("src//ficheros//AgendaTelefonica.txt"))) {
-			linea = lectura.readLine();
-			while(linea != null) {
-				nombreTelefono = linea.split(": ");
-				agendaTelefono.put(nombreTelefono[0], Integer.parseInt(nombreTelefono[1]));
-				linea = lectura.readLine();
-			}
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		cargarAgendaDesdeTxt(agendaTelefono);
 		
 		mostrarMenu();
 		opc = reader.nextInt();
@@ -77,6 +61,11 @@ public class Ejercicio7 {
 			opc = reader.nextInt();
 			reader.nextLine();
 		}
+		guardarMapEnTxt(agendaTelefono);
+		reader.close();
+	}
+
+	public static void guardarMapEnTxt(TreeMap<String, Integer> agendaTelefono) {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter("src//ficheros//AgendaTelefonica.txt"))) {
 			for (Map.Entry<String, Integer> contacto : agendaTelefono.entrySet()) {
 				writer.write(contacto.getKey() + ": " + contacto.getValue());
@@ -87,7 +76,25 @@ public class Ejercicio7 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		reader.close();
+	}
+
+	public static void cargarAgendaDesdeTxt(TreeMap<String, Integer> agendaTelefono) {
+		String linea;
+		String[] nombreTelefono;
+		try(BufferedReader lectura = new BufferedReader(new FileReader("src//ficheros//AgendaTelefonica.txt"))) {
+			linea = lectura.readLine();
+			while(linea != null) {
+				nombreTelefono = linea.split(": ");
+				agendaTelefono.put(nombreTelefono[0], Integer.parseInt(nombreTelefono[1]));
+				linea = lectura.readLine();
+			}
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 
 	static void mostrarMenu() {
