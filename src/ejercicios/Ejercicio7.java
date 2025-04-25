@@ -34,7 +34,7 @@ public class Ejercicio7 {
 				System.out.println("Introduzca su numero de teléfono");
 				telefono = reader.nextInt();
 				reader.nextLine();
-				if (agendaTelefono.keySet().size() == 20) {
+				if (agendaTelefono.size() == 20) {
 					System.out.println("La agenda ya está llena, tiene 20 contactos.");
 				} else if (agendaTelefono.containsKey(nombre)) {
 					System.out.println("Ese nombre ya está incluido en la agenda, no se ha podido añadir");
@@ -45,8 +45,9 @@ public class Ejercicio7 {
 			} else if (opc == 2) {
 				System.out.println("Introduzca el nombre que desea buscar:");
 				nombre = reader.nextLine();
-				if (agendaTelefono.get(nombre) != null) {
-					System.out.println(agendaTelefono.get(nombre));
+				Integer telefonoBuscar = agendaTelefono.get(nombre);
+				if (telefonoBuscar != null) {
+					System.out.println(telefonoBuscar);
 				} else {
 					System.out.println("Nombre no encontrado.");
 				}
